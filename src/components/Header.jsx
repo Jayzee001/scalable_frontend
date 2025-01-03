@@ -28,25 +28,6 @@ const Header = () => {
     setAnchorEl(null);
   };
 
-  const handleUploadClick = () => {
-  const token = localStorage.getItem("token");
-
-  if (token) {
-    try {
-      const user = jwt_decode(token);
-      if (user.role === "admin") {
-        navigate("/admin");
-      } else {
-        navigate("/");
-      }
-    } catch (error) {
-      console.error("Invalid token:", error);
-      navigate("/login");
-    }
-  } else {
-    navigate("/login");
-  }
-};
 
   const token = localStorage.getItem("token");
   const handleLogout = () => {
@@ -178,21 +159,6 @@ const Header = () => {
                     </Button>
                   </MenuItem>
                 )}
-                <MenuItem
-                  onClick={handleMenuClose}
-                  component={Link}
-                  to="/admin"
-                >
-                  <Button
-                    sx={{
-                      color: "var(--secondary-color)",
-                      backgroundColor: "var(--primary-color)",
-                      width: "100%",
-                    }}
-                  >
-                    Upload
-                  </Button>
-                </MenuItem>
               </Menu>
             </>
           ) : (
@@ -243,12 +209,6 @@ const Header = () => {
                   Logout
                 </Button>
               )}
-              <Button
-                sx={{ color: "var(--secondary-color)", marginLeft: "auto" }}
-                onClick={handleUploadClick}
-              >
-                Upload
-              </Button>
             </>
           )}
         </Toolbar>

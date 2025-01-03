@@ -15,6 +15,7 @@ const HomePage = () => {
       try {
         const videos = await fetchVideos();
         setVideoData(videos);
+        console.log("Videos: ", videos)
       } catch (error) {
         setError("Failed to load videos");
         console.error("Error loading videos:", error);

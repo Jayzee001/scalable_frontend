@@ -19,7 +19,7 @@ import Container from "@mui/material/Container";
 import "./App.css";
 
 const PrivateRoute = ({ children }) => {
-   const token = localStorage.getItem("token");
+  const token = localStorage.getItem("token");
   return token ? children : <Navigate to="/login" />;
 };
 
@@ -28,7 +28,7 @@ const App = () => {
     <Router>
       <Routes>
         <Route
-          path="/admin"
+          path="/admin/*"
           element={
             <PrivateRoute>
               <AdminDashboard />
