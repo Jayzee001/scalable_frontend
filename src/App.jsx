@@ -19,8 +19,8 @@ import Container from "@mui/material/Container";
 import "./App.css";
 
 const PrivateRoute = ({ children }) => {
-  const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
-  return isAuthenticated ? children : <Navigate to="/login" />;
+   const token = localStorage.getItem("token");
+  return token ? children : <Navigate to="/login" />;
 };
 
 const App = () => {

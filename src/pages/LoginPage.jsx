@@ -1,12 +1,19 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
+import {
+  TextField,
+  Button,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import { login } from "../services/authService";
 
 const LoginPage = () => {
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const isVerySmallScreen = useMediaQuery(theme.breakpoints.down("xs"));
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -48,6 +55,15 @@ const LoginPage = () => {
       <Typography variant="h4" gutterBottom>
         Login
       </Typography>
+      {error && (
+        <Typography
+          color="error"
+          variant={isVerySmallScreen ? "body2" : isSmallScreen ? "h6" : "h4"}
+          sx={{ fontSize: "12px" }}
+        >
+          {error}
+        </Typography>
+      )}
       <TextField
         label="Email"
         variant="outlined"
